@@ -155,10 +155,4 @@ As an academic project, this repository is primarily for demonstration, document
 **AL-BAYAN** – *Where AI meets Divine Wisdom.*
 
 ---
-
-### 💡 Tips for Deployment:
-- Replace `YOUR_USERNAME` in the clone URL.
-- If deploying to platforms like Render, Railway, or Heroku, add a `Procfile` (`web: gunicorn app:app`) and configure `GEMINI_API_KEY` in environment variables.
-- Precompute embeddings once using `scripts/precompute_embeddings.py` to speed up initial load times.
-
-Let me know if you'd like this exported as a downloadable `.md` file, or if you need a `CONTRIBUTING.md`, `CITATION.cff`, or academic abstract version!
+le, or if you need a `CONTRIBUTING.md`, `CITATION.cff`, or academic abstract version!
