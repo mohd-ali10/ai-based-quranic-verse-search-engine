@@ -155,4 +155,3 @@ As an academic project, this repository is primarily for demonstration, document
 **AL-BAYAN** – *Where AI meets Divine Wisdom.*
 
 ---
-le, or if you need a `CONTRIBUTING.md`, `CITATION.cff`, or academic abstract version!
