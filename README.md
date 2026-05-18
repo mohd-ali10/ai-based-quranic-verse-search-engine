@@ -91,7 +91,7 @@ Follow these steps to run AL-BAYAN locally:
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/AL-BAYAN.git
+git clone https://github.com/mohd-ali10/AL-BAYAN.git
 cd AL-BAYAN
 ```
 
