@@ -1,169 +1,164 @@
-# 📖 AL-BAYAN | AI-Based Quranic Verse Search Engine
+# 📖 AL-BAYAN | AI-Powered Quranic Verse Search Engine
+> *Bridging Traditional Keyword Search with Semantic AI Understanding*
 
-**AL-BAYAN** is an AI-powered Quranic search engine developed as a **Final Year Project (FYP)**, designed to bridge the gap between traditional keyword search and semantic understanding. It provides accurate, context-aware Quranic verse retrieval using **Hybrid Search (TF-IDF + Semantic Embeddings)** and **Retrieval-Augmented Generation (RAG)** techniques.
+**AL-BAYAN** is a cutting-edge, AI-driven Quranic search engine developed as a Final Year Project (FYP). Designed to transcend the limitations of rigid exact-match searches, it leverages **Hybrid Search** (`TF-IDF` + `Semantic Embeddings`) and **Retrieval-Augmented Generation (RAG)** to deliver highly accurate, context-aware, and scholarly Quranic verse retrieval. Whether you're a student, researcher, or lifelong learner, AL-BAYAN provides an intuitive, multi-lingual platform to explore the Quran with depth, clarity, and reverence.
 
 ---
 
 ## 🎯 Project Objectives
-
-* Enable semantic understanding of Quranic verses beyond exact keyword matching.
-* Support multi-language search (Arabic, English, Urdu).
-* Integrate AI-generated explanations using large language models (Google Gemini 1.5 Flash).
-* Provide a modern, user-friendly web interface for Quranic study and research.
-
----
-
-## 🚀 Key Features
-
-* **Hybrid Search Engine**: Combines TF-IDF for precise keyword matching and Sentence Transformers for semantic similarity.
-* **AI-Powered Insights (RAG)**: Generates contextual and scholarly summaries for queries.
-* **Multi-Language Support**: Arabic Quran text, English translation (Sahih International), and Urdu translation.
-* **Voice-Based Search**: Search Quranic verses using voice input.
-* **Smart UI Controls**: Dark mode, adjustable font sizes, translation toggle.
-* **Shareable Verse Cards**: Generate social media-friendly verse images.
+- 🔍 **Semantic Understanding:** Move beyond keyword matching to grasp contextual and thematic relevance.
+- 🌍 **Multi-Language Support:** Seamless search across Arabic, English (Sahih International), and Urdu.
+- 🤖 **AI-Augmented Insights:** Generate contextual explanations & scholarly summaries using Google Gemini 1.5 Flash.
+- 💻 **Modern Accessibility:** Deliver a responsive, user-friendly interface optimized for study and research.
 
 ---
 
-## 🛠️ Tech Stack
+## ✨ Key Features
+| Feature | Description |
+|:---|:---|
+| 🔄 **Hybrid Search Engine** | Combines `TF-IDF` for precise lexical matching with `Sentence Transformers` (`all-MiniLM-L6-v2`) for deep semantic similarity. |
+| 🧠 **AI-Powered Insights (RAG)** | Retrieves top-k verses and feeds them into an LLM pipeline to generate contextual, tafsir-backed explanations. |
+| 🌐 **Tri-Lingual Support** | Full Quranic text with parallel English & Urdu translations, plus Tafsir Ibn Kathir in both languages. |
+| 🎙️ **Voice-Activated Search** | Hands-free verse discovery using modern Web Speech API integration. |
+| ⚙️ **Smart UI Controls** | Toggle dark/light mode, adjust font scaling, and switch translations dynamically without page reloads. |
+| 📤 **Shareable Verse Cards** | Generate beautifully formatted, social-media-ready verse images for easy sharing & da'wah. |
 
-### Backend
+---
 
-* Python
-* Flask
+## 🛠️ Technology Stack
+| Category | Technologies & Libraries |
+|:---|:---|
+| **Backend** | `Python`, `Flask` |
+| **AI / Machine Learning** | `PyTorch`, `Sentence-Transformers` (`all-MiniLM-L6-v2`), `Scikit-learn` (TF-IDF) |
+| **LLM Integration** | `Google GenAI SDK` (Gemini 1.5 Flash) |
+| **Frontend** | `HTML5`, `Tailwind CSS`, `Vanilla JavaScript` |
+| **Data Pipeline** | Custom Quran JSON Dataset, Tafsir Ibn Kathir (EN/UR), Runtime Dataset Merging |
 
-### AI / Machine Learning
+---
 
-* PyTorch
-* Sentence-Transformers (`all-MiniLM-L6-v2`)
-* Scikit-learn (TF-IDF)
-
-### LLM Integration
-
-* Google GenAI SDK (Gemini)
-
-### Frontend
-
-* HTML5
-* Tailwind CSS
-* JavaScript
-
-### Data
-
-* Custom Quran JSON dataset
-* Tafsir Ibn Kathir (English & Urdu)
-> Note: Due to GitHub’s 25 MB file size limit, the final dataset is split into two JSON files and merged dynamically at runtime.
+## 🔍 How It Works (Under the Hood)
+1. **Query Normalization:** User input (text or voice) is cleaned, tokenized, and language-detected.
+2. **Dual-Path Retrieval:**
+   - 📊 `TF-IDF` ranks verses based on exact keyword frequency & inverse document frequency.
+   - 🌐 `Sentence Transformers` compute cosine similarity between query and verse embeddings.
+   - ⚖️ Results are fused using a weighted hybrid scoring algorithm for optimal precision & recall.
+3. **RAG Generation:** Top-matching verses + relevant Tafsir excerpts are passed to **Gemini 1.5 Flash** with a structured prompt to generate scholarly, context-aware summaries.
+4. **Dynamic Rendering:** Results are injected into the UI with translation toggles, font scaling, and export/share functionality.
 
 ---
 
 ## 📂 Project Structure
-
 ```
 AL-BAYAN/
 │
-├── app.py                      # Main Flask application
-├── search_engine.py            # Hybrid search + RAG logic
-├── models.py                   # ML model loading & embeddings
-├── utils.py                    # Helper functions
-├── cli.py                      # Optional CLI interface
-│
+├── app.py                      # Main Flask server & routing
+├── search_engine.py            # Hybrid search logic & RAG pipeline
+├── models.py                   # ML model initialization & embedding generation
+├── utils.py                    # Utility & helper functions
+├── cli.py                      # Optional command-line interface
 ├── requirements.txt            # Python dependencies
-├── .gitignore                  # Ignored files
-├── README.md                   # Main project documentation
+├── .gitignore                  # Version control exclusions
 │
-├── templates/                  # Frontend HTML templates
-│   ├── base.html
-│   ├── index.html
-│   ├── search.html
-│   ├── browse.html
-│   └── about.html
+├── templates/                  # Frontend HTML templates (Jinja2)
+│   ├── base.html               # Base layout & navigation
+│   ├── index.html              # Homepage & search entry
+│   ├── search.html             # Results & AI insights display
+│   ├── browse.html             # Surah/Ayah navigator
+│   └── about.html              # Project documentation
 │
-├── static/                     # Static frontend assets
-│   ├── css/
-│   │   └── styles.css
-│   │
-│   ├── js/
-│   │   └── main.js
-│   │
-│   └── assets/                 # Screenshots (for viva)
-│       ├── Home.png
-│       ├── Browse_Surah.png
-│       ├── About.png
-│       └── README.md
+├── static/                     # Frontend assets
+│   ├── css/styles.css          # Custom styling overrides
+│   ├── js/main.js              # Client-side interactivity
+│   └── assets/                 # Screenshots & media
 │
-├── data/                       # Dataset directory
-│   ├── README.md               # Dataset explanation
-│   │
+├── data/                       # Quranic & Tafsir datasets
 │   ├── quran_part_1.json       # Surah 1–57
 │   ├── quran_part_2.json       # Surah 58–114
-│   │
-│   └── sources/                # Raw / optional datasets
-│       ├── README.md
-│       ├── quran.json
-│       ├── quran_ur.json
-│       ├── quran_with_urdu.json
-│       ├── en-tafsir-ibn-kathir.json
-│       └── tafseer-ibn-e-kaseer-urdu.json
+│   └── sources/                # Raw/backup source files
 │
-└── scripts/                    # Data preprocessing scripts
-    ├── merge_english_urdu.py
-    ├── merge_tafseer.py
-    ├── final_merge.py
-    └── precompute_embeddings.py
-
+└── scripts/                    # Data preprocessing & embedding scripts
+    ├── merge_english_urdu.py   # Bilingual dataset merger
+    ├── merge_tafseer.py        # Tafsir integration script
+    ├── final_merge.py          # Final dataset consolidation
+    └── precompute_embeddings.py # Vector embedding generator
 ```
+> 💡 *Note: To comply with GitHub’s 25 MB file size limit, the final Quranic dataset is split into two JSON files and dynamically merged at runtime.*
 
 ---
 
-## ⚙️ Installation & Setup
+## 🚀 Installation & Setup
+Follow these steps to run AL-BAYAN locally:
 
 ### 1️⃣ Clone the Repository
-
 ```bash
 git clone https://github.com/YOUR_USERNAME/AL-BAYAN.git
 cd AL-BAYAN
 ```
 
-### 2️⃣ Install Dependencies
+### 2️⃣ Create & Activate Virtual Environment (Recommended)
+```bash
+python -m venv venv
+source venv/bin/activate   # macOS/Linux
+venv\Scripts\activate      # Windows
+```
 
+### 3️⃣ Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3️⃣ Set Up Google Gemini API Key
+### 4️⃣ Configure Google Gemini API Key
+- Obtain your API key from [Google AI Studio](https://aistudio.google.com/).
+- Set it as an environment variable:
+  ```bash
+  export GEMINI_API_KEY="your_api_key_here"  # macOS/Linux
+  set GEMINI_API_KEY=your_api_key_here       # Windows CMD
+  $env:GEMINI_API_KEY="your_api_key_here"    # PowerShell
+  ```
+- *(Optional for local testing: You may hardcode the key in `app.py`, but environment variables are strongly recommended for security.)*
 
-* Obtain an API key from [Google AI Studio](https://aistudio.google.com/).
-* Set it as an environment variable (recommended):
-
+### 5️⃣ Run the Application
 ```bash
-export GEMINI_API_KEY="your_api_key_here"
+python app.py
 ```
-
-or configure directly in `app.py` for local testing.
-
-### 4️⃣ Run the Application
-
-```bash
-python backend/app.py
-```
-
-Visit: `http://127.0.0.1:5000`
+🌐 Open your browser and visit: `http://127.0.0.1:5000`
 
 ---
 
-##  Screenshots
+## 📸 Screenshots & UI Preview
+*(Add your UI captures to `static/assets/` and update the paths below)*
 
-Screenshots of UI and features can be added to an `assets/` folder and referenced here.
+| 🏠 Home | 🔍 Search & AI Insights | 📖 Browse Surah | ℹ️ About |
+|:---:|:---:|:---:|:---:|
+| `![Home](static/assets/Home.png)` | `![Search](static/assets/Search.png)` | `![Browse](static/assets/Browse_Surah.png)` | `![About](static/assets/About.png)` |
 
 ---
 
-## 📄 License
-
-This project is developed strictly for educational and academic purposes as a Final Year Project (FYP).
+## 📜 License & Academic Use
+This project is developed strictly for **educational and academic purposes** as a Final Year Project (FYP). It is not intended for commercial distribution, fatwa issuance, or religious authority. All Quranic text, translations, and Tafsir content are used with the utmost respect and solely for research, learning, and technological exploration.
 
 ---
 
 ## 🕌 Acknowledgments
+- 📖 The Holy Quran & its respected translators (Sahih International, Urdu scholarly translations)
+- 📚 Tafsir Ibn Kathir & classical Islamic scholarship
+- 🤖 Open-source AI/ML community: Hugging Face, Google GenAI, Scikit-learn, Flask, Tailwind CSS
+- 🎓 Faculty advisors, peer reviewers, and academic supporters who guided this FYP
 
-All Quranic text and Tafsir content are used with respect and solely for educational research purposes.
+---
 
+## 🤝 Contributing & Feedback
+As an academic project, this repository is primarily for demonstration, documentation, and educational sharing. However, constructive feedback, bug reports, or academic collaborations are always welcome. Please open an issue or submit a pull request following standard GitHub practices.
 
+---
+*Built with ❤️ and reverence for knowledge.*  
+**AL-BAYAN** – *Where AI meets Divine Wisdom.*
+
+---
+
+### 💡 Tips for Deployment:
+- Replace `YOUR_USERNAME` in the clone URL.
+- If deploying to platforms like Render, Railway, or Heroku, add a `Procfile` (`web: gunicorn app:app`) and configure `GEMINI_API_KEY` in environment variables.
+- Precompute embeddings once using `scripts/precompute_embeddings.py` to speed up initial load times.
+
+Let me know if you'd like this exported as a downloadable `.md` file, or if you need a `CONTRIBUTING.md`, `CITATION.cff`, or academic abstract version!
